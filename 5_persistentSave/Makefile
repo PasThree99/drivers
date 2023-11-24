@@ -1,6 +1,6 @@
 CONFIG_MODULE_SIGN=n
 
-obj-m += basicDriver.o
+obj-m += persistent.o
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules

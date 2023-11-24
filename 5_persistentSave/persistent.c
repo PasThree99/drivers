@@ -1,6 +1,8 @@
-#include <linux/module>
+#include <linux/module.h>
 #include <linux/init.h>
 #include <linux/fs.h>
+#include <linux/uaccess.h> 
+#include <linux/slab.h> 
 
 MODULE_LICENSE("GPL");
 
@@ -13,12 +15,12 @@ struct my_device_data {
     int id;
     unsigned long timestamp;
     char data[256];
-}
+};
 
 
 static int driverOpen(struct inode *inode, struct file *filp){
-    struct my_device_data *myData = kmalloc(sizeof(struct my_device_data));
-        if (!my_data) {
+    struct my_device_data *myData = kmalloc(sizeof(struct my_device_data), GFP_KERNEL);
+        if (!myData) {
         printk(KERN_ALERT "Failed to allocate memory for device data\n");
         return -ENOMEM;
     }
@@ -32,13 +34,13 @@ static int driverOpen(struct inode *inode, struct file *filp){
 static int driverClose(struct inode *inode, struct file *filp){
     struct my_device_data *myData = filp->private_data;
     
-    free(myData);
+    kfree(myData);
     printk(KERN_INFO "Device closed\n");
 
     return RC_SUCCESS;
 }
 
-static int driverWrite(struct file *filp, char __user *buf, size_t count, loff_t *f_pos){
+static ssize_t driverWrite(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos){
     struct my_device_data *myData = filp->private_data;
 
     if (*f_pos != 0) {
@@ -56,7 +58,7 @@ static int driverWrite(struct file *filp, char __user *buf, size_t count, loff_t
     return count; 
 }
 
-static int driverRead(struct file *filp, char __user *buf, size_t count, loff_t *f_pos){
+static ssize_t driverRead(struct file *filp, char __user *buf, size_t count, loff_t *f_pos){
     struct my_device_data *myData = filp->private_data;
 
     size_t bytes_to_copy = min(count, sizeof(myData->data));
@@ -79,10 +81,10 @@ struct file_operations persistent_fops = {
     .release = driverClose,
 };
 
-static int init (void){
+static int driverInit (void){
     int rc;
 
-    rc = register_chrdev(major, "persistent", &persistent_fops),
+    rc = register_chrdev(major, "persistent", &persistent_fops);
 
     if (rc < 0){
         printk(KERN_ERR "Could not register module.  rc = %d", rc);
@@ -97,10 +99,10 @@ static int init (void){
 
 }
 
-static int exit (void){
+static void driverExit (void){
     printk(KERN_INFO "Unregistering module with major %d", major);
     unregister_chrdev(major, "persistent");
 }
 
-module_init(init);
-module_exit(exit);
+module_init(driverInit);
+module_exit(driverExit);

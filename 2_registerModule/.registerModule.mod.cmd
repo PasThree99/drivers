@@ -1,1 +1,0 @@
-cmd_/home/parallels/Documents/driversRepo/drivers/2_registerModule/registerModule.mod := { echo  /home/parallels/Documents/driversRepo/drivers/2_registerModule/registerModule.o;  echo; } > /home/parallels/Documents/driversRepo/drivers/2_registerModule/registerModule.mod

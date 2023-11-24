@@ -1,1 +1,0 @@
-cmd_/home/parallels/Documents/driversRepo/drivers/4_randNumber/randNumber.mod := { echo  /home/parallels/Documents/driversRepo/drivers/4_randNumber/randNumber.o;  echo; } > /home/parallels/Documents/driversRepo/drivers/4_randNumber/randNumber.mod

@@ -1,1 +1,0 @@
-cmd_/home/parallels/Documents/driversRepo/drivers/4_randNumber/Module.symvers := sed 's/\.ko$$/\.o/' /home/parallels/Documents/driversRepo/drivers/4_randNumber/modules.order | scripts/mod/modpost -m -a  -o /home/parallels/Documents/driversRepo/drivers/4_randNumber/Module.symvers -e -i Module.symvers   -T -

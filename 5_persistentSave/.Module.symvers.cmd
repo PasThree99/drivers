@@ -1,1 +1,0 @@
-cmd_/home/parallels/Documents/driversRepo/drivers/5_persistentSave/Module.symvers := sed 's/\.ko$$/\.o/' /home/parallels/Documents/driversRepo/drivers/5_persistentSave/modules.order | scripts/mod/modpost -m -a  -o /home/parallels/Documents/driversRepo/drivers/5_persistentSave/Module.symvers -e -i Module.symvers   -T -

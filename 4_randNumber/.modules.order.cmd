@@ -1,0 +1,1 @@
+cmd_/home/parallels/Documents/driversRepo/drivers/4_randNumber/modules.order := {   echo /home/parallels/Documents/driversRepo/drivers/4_randNumber/randNumber.ko; :; } | awk '!x[$$0]++' - > /home/parallels/Documents/driversRepo/drivers/4_randNumber/modules.order

@@ -1,0 +1,1 @@
+cmd_/home/parallels/Documents/driversRepo/drivers/1_BasicDriver/Module.symvers := sed 's/\.ko$$/\.o/' /home/parallels/Documents/driversRepo/drivers/1_BasicDriver/modules.order | scripts/mod/modpost -m -a  -o /home/parallels/Documents/driversRepo/drivers/1_BasicDriver/Module.symvers -e -i Module.symvers   -T -

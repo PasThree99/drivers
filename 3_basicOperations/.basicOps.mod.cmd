@@ -1,0 +1,1 @@
+cmd_/home/parallels/Documents/driversRepo/drivers/3_basicOperations/basicOps.mod := { echo  /home/parallels/Documents/driversRepo/drivers/3_basicOperations/basicOps.o;  echo; } > /home/parallels/Documents/driversRepo/drivers/3_basicOperations/basicOps.mod

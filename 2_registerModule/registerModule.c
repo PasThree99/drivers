@@ -9,11 +9,15 @@ MODULE_LICENSE("GPL");
 int module_major = 0;
 
 
+struct file_operations driver_fops = {
+    .owner = THIS_MODULE,
+};
+
 static int hellostart(void){
     
     int rc;
 
-    printk(KERN_ALERT"Inserting yoktoDriver\n");
+    printk(KERN_ALERT"Inserting driver\n");
 
     /*
      * Dinamyc registration:
@@ -22,7 +26,7 @@ static int hellostart(void){
      * with and return it. Note that any number less than 0 is en error
      */ 
 
-    rc = register_chrdev(module_major, "yokto", &yokto_fops);
+    rc = register_chrdev(module_major, "registerDriver", &driver_fops);
 
     // ERROR
     if(rc < 0)
@@ -30,12 +34,12 @@ static int hellostart(void){
     if(module_major == 0)
         module_major = rc;
     
-    return RC_SUCCESS;
+    return 0;
 }
 
 static void helloexit(void){
-    printk(KERN_ALERT "Removing yoktoDriver %d\n", module_major);
-    unregister_chrdev(module_major, "yokto");
+    printk(KERN_ALERT "Removing driver %d\n", module_major);
+    unregister_chrdev(module_major, "registerDriver");
 }
 
 

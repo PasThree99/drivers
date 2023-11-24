@@ -7,11 +7,12 @@
 MODULE_LICENSE("GPL");
 
 static int hellostart(void){
-    printk(KERN_ALERT"Inserting yoktoDriver\n");
+    printk(KERN_ALERT"Inserting driver\n");
+    return 0;
 }
 
 static void helloexit(void){
-    printk(KERN_ALERT "Removing yoktoDriver %d\n", module_major);
+    printk(KERN_ALERT "Removing driver\n");
 }
 
 

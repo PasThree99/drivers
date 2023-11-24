@@ -1,0 +1,1 @@
+cmd_/home/parallels/Documents/driversRepo/drivers/3_basicOperations/modules.order := {   echo /home/parallels/Documents/driversRepo/drivers/3_basicOperations/basicOps.ko; :; } | awk '!x[$$0]++' - > /home/parallels/Documents/driversRepo/drivers/3_basicOperations/modules.order

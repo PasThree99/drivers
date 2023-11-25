@@ -63,7 +63,7 @@ static ssize_t driverRead(struct file *filp, char __user *buf, size_t count, lof
 
     size_t bytes_to_copy = min(count, sizeof(myData->data));
 
-    if(!copy_to_user(buf, myData, min(count, bytes_to_copy))){
+    if(copy_to_user(buf, myData, min(count, bytes_to_copy))){
         printk(KERN_ERR "Failed to read!");
         return -EFAULT;
     }

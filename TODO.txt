@@ -1,0 +1,29 @@
+Generador de Números Aleatorios:
+Extiende tu driver para incluir un generador de números aleatorios. Los programas en espacio de usuario pueden abrir el dispositivo, leer un número aleatorio y cerrar el dispositivo.
+
+Almacenamiento de Datos Persistente:
+Modifica tu driver para almacenar datos de manera persistente. Puedes permitir que los programas escriban datos en el driver, y esos datos se conservarán incluso después de que el programa termine o el sistema se reinicie.
+
+Implementación de Pipes Personalizados:
+Convierte tu driver en un componente para implementar pipes personalizados entre procesos. Puedes permitir que los procesos escriban en un extremo y lean desde el otro, utilizando tu driver como canal de comunicación.
+
+Monitor de Actividad del Sistema:
+Extiende tu driver para rastrear y almacenar eventos del sistema, como la cantidad de tiempo que el sistema ha estado activo, la carga del CPU, etc. Los programas en espacio de usuario pueden abrir el dispositivo y leer esta información.
+
+Control de LEDs o Dispositivos de Salida:
+Si estás trabajando en un sistema embebido, podrías extender tu driver para controlar LEDs o dispositivos de salida específicos. Por ejemplo, los programas en espacio de usuario podrían enviar comandos al driver para encender o apagar un LED.
+
+Registro de Datos de Sensores:
+Si estás en un entorno con sensores, podrías extender tu driver para leer datos de sensores y proporcionarlos a los programas en espacio de usuario.
+
+Interfaz de Comunicación entre Módulos:
+Desarrolla una interfaz de comunicación entre varios módulos de driver. Por ejemplo, un módulo podría enviar datos a otro a través de tu driver.
+
+Simulador de Dispositivo:
+Convierte tu driver en un simulador de dispositivo. Podrías simular la lectura y escritura de datos como si fueran provenientes de un dispositivo físico.
+
+Criptografía en el Nivel del Kernel:
+Implementa funciones criptográficas en tu driver para realizar operaciones criptográficas en el nivel del kernel. Esto podría incluir cifrado y descifrado de datos.
+
+Adaptador de Red Simple:
+Si te sientes aventurero, podrías explorar el desarrollo de un driver de red simple que maneje la transmisión de datos entre procesos en diferentes máquinas.

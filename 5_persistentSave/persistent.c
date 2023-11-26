@@ -47,7 +47,7 @@ static ssize_t driverWrite(struct file *filp, const char __user *buf, size_t cou
         return -EINVAL;
     }
 
-    if (copy_from_user(myData->data, buf, min(count, sizeof(myData->data)))) {
+    if (copy_from_user(myData->data + *f_pos, buf, min(count, sizeof(myData->data)))) {
         return -EFAULT;
     }
 
@@ -60,14 +60,21 @@ static ssize_t driverWrite(struct file *filp, const char __user *buf, size_t cou
 
 static ssize_t driverRead(struct file *filp, char __user *buf, size_t count, loff_t *f_pos){
     struct my_device_data *myData = filp->private_data;
-
     size_t bytes_to_copy = min(count, sizeof(myData->data));
 
-    if(copy_to_user(buf, myData, min(count, bytes_to_copy))){
+    if (*f_pos >= sizeof(myData->data))
+        return 0;
+
+    printk(KERN_INFO "Copying %zu bytes to user", bytes_to_copy);
+    printk(KERN_INFO "Buffer content: %s", myData->data);
+
+    if(copy_to_user(buf, myData->data, bytes_to_copy)){
         printk(KERN_ERR "Failed to read!");
         return -EFAULT;
     }
 
+    *f_pos += bytes_to_copy;
+    
     return bytes_to_copy;
 }
 

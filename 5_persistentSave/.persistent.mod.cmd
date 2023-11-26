@@ -1,0 +1,1 @@
+cmd_/home/parallels/Documents/driversRepo/drivers/5_persistentSave/persistent.mod := { echo  /home/parallels/Documents/driversRepo/drivers/5_persistentSave/persistent.o;  echo; } > /home/parallels/Documents/driversRepo/drivers/5_persistentSave/persistent.mod

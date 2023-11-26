@@ -1,0 +1,1 @@
+cmd_/home/parallels/Documents/driversRepo/drivers/5_persistentSave/modules.order := {   echo /home/parallels/Documents/driversRepo/drivers/5_persistentSave/persistent.ko; :; } | awk '!x[$$0]++' - > /home/parallels/Documents/driversRepo/drivers/5_persistentSave/modules.order

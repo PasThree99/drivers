@@ -1,1 +1,0 @@
-cmd_/home/parallels/Documents/driversRepo/drivers/4_simpleRead/readModule.mod := { echo  /home/parallels/Documents/driversRepo/drivers/4_simpleRead/readModule.o;  echo; } > /home/parallels/Documents/driversRepo/drivers/4_simpleRead/readModule.mod

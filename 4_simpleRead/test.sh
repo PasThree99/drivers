@@ -1,11 +1,11 @@
 original_dir=$(pwd)
 my_dir=$(readlink -f "$0")
-device="/dev/basicOpsDevice"
+device="/dev/simpleReadDevice"
 
 cleanTest(){
-    rm -f $device
+    sudo rm -f $device
     rm -f a.out
-    sudo rmmod basicOps
+    sudo rmmod readModule
     make clean
 }
 
@@ -14,7 +14,7 @@ cd $my_dir
 
 make clean
 make
-if [[ $? -eq 1]]; then 
+if [[ $? -eq 1 ]]; then 
     echo "ERROR: Failed to compile driver!"
     cleanTest 
     exit 1
@@ -47,8 +47,8 @@ if [[ $? -eq 1 ]]; then
     exit 1;
 fi
 
-./a.out
-if [[ $? -eq 1 ]]; then
+./a.out $device
+if [[ $? -eq 0 ]]; then
     echo "Test completed succesfully: open close and read work as expected!"
 else
     echo "Execution failed: test.cpp"
@@ -58,3 +58,5 @@ fi
 
 echo "Cleaning.."
 cleanTest
+
+echo "SUCCESS"

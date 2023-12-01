@@ -8,12 +8,12 @@ cd $my_dir
 make clean
 make
 
-if [[ $? -eq 1]]; then 
+if [[ $? -eq 1 ]]; then 
     echo "ERROR: Failed to compile driver!"
     exit 1
 fi
 
-sudo insmod registetModule.ko
+sudo insmod registerModule.ko
 
 if [[ $? -eq 0 ]]; then
     echo "Diver was inserted successfully"
@@ -47,3 +47,5 @@ echo "Test ended successfully. Cleaning"
 make clean
 
 cd $original_dir
+
+echo "SUCCESS"

@@ -9,15 +9,16 @@ int main(int argc, char *argv[]){
     int fd;
     int rc;
 
-    fd = open(device, O_RDWR);
+    printf("INFO: Opening %s\n", device);
+    fd = open(device, O_RDONLY);
     if (fd < 0){
-        cout << "ERROR: Open " << device << " failed" << endl;
+        printf("ERROR: Open %s failed (%d)\n", device, fd);
         return 1;
     }
     
     rc = close(fd);
     if (fd < 0){
-        cout << "ERROR: Close " << device << " failed" << endl;
+        printf("ERROR: Close %s failed\n", device);
         return 1;
     }
 

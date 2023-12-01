@@ -8,7 +8,7 @@ cd $my_dir
 make clean
 make
 
-if [[ $? -eq 1]]; then 
+if [[ $? -eq 1 ]]; then 
     echo "ERROR: Failed to compile driver!"
     exit 1
 fi
@@ -37,3 +37,5 @@ echo "Test ended successfully. Cleaning"
 make clean
 
 cd $original_dir
+
+echo "SUCCESS"

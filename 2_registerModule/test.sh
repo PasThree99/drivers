@@ -8,14 +8,14 @@ cd $my_dir
 make clean
 make
 
-if [[ $? == 1]]; then 
+if [[ $? -eq 1]]; then 
     echo "ERROR: Failed to compile driver!"
     exit 1
 fi
 
 sudo insmod registetModule.ko
 
-if [[ $? == 0 ]]; then
+if [[ $? -eq 0 ]]; then
     echo "Diver was inserted successfully"
 else
     echo "ERROR: Something went wrong while inserting the driver!"
@@ -25,7 +25,7 @@ fi
 
 cat /proc/devices | grep registerDriver
 
-if [[ $? == 0 ]]; then
+if [[ $? -eq 0 ]]; then
     major=$(cat /proc/devices | grep registerDriver | awk '{print $1}')
     echo "Driver was registered succesfully with major = $major"
 else
@@ -35,7 +35,7 @@ fi
 
 sudo rmmod registerModule
 
-if [[ $? == 0 ]]; then
+if [[ $? -eq 0 ]]; then
     echo "Diver was removed successfully"
 else
     echo "ERROR: Something went wrong while removing the driver!"

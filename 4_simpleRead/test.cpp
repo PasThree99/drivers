@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 using namespace std;
+using namespace std;
 
 int main (int argc, char *argv[]){
     char *dev            = argv[1];

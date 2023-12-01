@@ -7,12 +7,8 @@
 int module_major = 0;
 char *module_name = "simpleRead";
 
-struct file_operations module_fops = {
-    .owner = THIS_MODULE,
-    .read = moduleRead,
-    .open = moduleOpen,
-    .release = moduleClose,
-};
+MODULE_LICENSE("GPL");
+
 
 static int moduleOpen(struct inode *inode, struct file *filp){
     printk(KERN_INFO "Open success");
@@ -25,15 +21,22 @@ static int moduleClose(struct inode *inode, struct file *filp){
 }
 
 static ssize_t moduleRead(struct file *filp, char __user *buf, size_t count, loff_t *f_pos){
-    char msg = "This is a simple read";
+    const char *msg = "This is a simple read";
     ssize_t bytes_to_read = strlen(msg);
     
-    if (copy_to_user(buf, msg, bytes_to_copy) != 0) {
+    if (copy_to_user(buf, msg, bytes_to_read) != 0) {
         return -EFAULT; 
     }
 
     return bytes_to_read;
 }
+
+struct file_operations module_fops = {
+    .owner = THIS_MODULE,
+    .read = moduleRead,
+    .open = moduleOpen,
+    .release = moduleClose,
+};
 
 static int moduleInit(void){
     int rc;

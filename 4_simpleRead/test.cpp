@@ -1,18 +1,40 @@
-#include <stdio.h>
+#include <iostream>
 #include <fcntl.h>
 #include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <string.h>
+using namespace std;
 
-
-int main (void){
-    char *dev           = "/dev/readMod";
+int main (int argc, char *argv[]){
+    char *dev            = argv[1];
     char output[256];
+    char *expectedOutput = "This is a simple read";
+    int fd;
+    int rc;
 
-    int fd = open(dev, O_RDWR);
-    read(fd, output, sizeof(output)-1);
-    printf("Output = %s\nExpected = %s\n", output);
-    close(fd);
+    fd = open(dev, O_RDWR);
+    if (fd < 0){
+        cout << "ERROR: Open " << dev << " failed" << endl;
+        return 1;
+    }
 
+    rc = read(fd, output, 256 - 1);
+    if (fd < 0){
+        cout << "ERROR: read " << dev << " failed" << endl;
+        return 1;
+    }
+    cout << "Output = " << output << endl;
+
+    if(output != expectedOutput){
+        cout << "ERROR: Outputs is not as expected." << endl;
+        cout << "Got: " << output << endl;
+        cout << "Expected: " << expectedOutput << endl;
+        return 1;
+    }
+
+    rc = close(fd);
+    if (fd < 0){
+        cout << "ERROR: Close " << dev << " failed" << endl;
+        return 1;
+    }
+
+    return 0;
 }

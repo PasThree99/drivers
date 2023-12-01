@@ -15,6 +15,5 @@ static void helloexit(void){
     printk(KERN_ALERT "Removing driver\n");
 }
 
-
 module_init(hellostart);
 module_exit(helloexit);

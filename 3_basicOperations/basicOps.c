@@ -12,35 +12,32 @@ MODULE_LICENSE("GPL");
 
 #define RC_SUCCESS 0 
 #define RC_FAIL 1 
-
 int module_major = 0;
 
-static int yoktoOpen(struct inode *inode, struct file *filp) {
+static int moduleOpen(struct inode *inode, struct file *filp) {
     printk(KERN_ALERT "Device opened successfully\n");
     return RC_SUCCESS;
 }
 
-static int yoktoClose(struct inode *inode, struct file *filp){
+static int moduleClose(struct inode *inode, struct file *filp){
        printk(KERN_ALERT "Device closed\n");
        return RC_SUCCESS;
 }
 
-
-struct file_operations yokto_fops = {
+struct file_operations module_fops = {
     .owner = THIS_MODULE,
-    .open = yoktoOpen,
-    .release = yoktoClose,
+    .open = moduleOpen,
+    .release = moduleClose,
 };
-
 
 static int hellostart(void){
     
     int rc;
 
-    printk(KERN_ALERT"Inserting yoktoDriver\n");
+    printk(KERN_ALERT"Inserting Driver\n");
 
     // Dinamyc registration
-    rc = register_chrdev(module_major, "yokto", &yokto_fops);
+    rc = register_chrdev(module_major, "basicDriver", &module_fops);
 
     // ERROR
     if(rc < 0)
@@ -52,12 +49,9 @@ static int hellostart(void){
 }
 
 static void helloexit(void){
-    printk(KERN_ALERT "Removing yoktoDriver %d\n", module_major);
-    unregister_chrdev(module_major, "yokto");
+    printk(KERN_ALERT "Removing Driver %d\n", module_major);
+    unregister_chrdev(module_major, "basicDriver");
 }
-
-
-
 
 module_init(hellostart);
 module_exit(helloexit);

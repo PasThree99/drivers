@@ -8,7 +8,6 @@ MODULE_LICENSE("GPL");
 
 int module_major = 0;
 
-
 struct file_operations driver_fops = {
     .owner = THIS_MODULE,
 };
@@ -41,7 +40,6 @@ static void helloexit(void){
     printk(KERN_ALERT "Removing driver %d\n", module_major);
     unregister_chrdev(module_major, "registerDriver");
 }
-
 
 module_init(hellostart);
 module_exit(helloexit);

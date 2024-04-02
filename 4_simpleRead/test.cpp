@@ -20,7 +20,7 @@ int main (int argc, char *argv[]){
     }
 
     rc = read(fd, output, 256 - 1);
-    if (fd < 0){
+    if (rc < 0){
         printf("ERROR: read %s failed\n", dev);
         return 1;
     }
@@ -34,7 +34,7 @@ int main (int argc, char *argv[]){
     }
 
     rc = close(fd);
-    if (fd < 0){
+    if (rc < 0){
         printf("ERROR: Close %s failed\n", dev);
         return 1;
     }

@@ -9,7 +9,6 @@ int main(int argc, char *argv[]){
     int fd;
     int rc;
 
-    printf("INFO: Opening %s\n", device);
     fd = open(device, O_RDONLY);
     if (fd < 0){
         printf("ERROR: Open %s failed (%d)\n", device, fd);
@@ -17,7 +16,7 @@ int main(int argc, char *argv[]){
     }
     
     rc = close(fd);
-    if (fd < 0){
+    if (rc < 0){
         printf("ERROR: Close %s failed\n", device);
         return 1;
     }
